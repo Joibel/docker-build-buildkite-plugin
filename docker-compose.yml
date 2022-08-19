@@ -1,0 +1,11 @@
+services:
+  lint:
+    image: buildkite/plugin-linter
+    command: ['--id', 'Joibel/loomly-tag']
+    volumes:
+      - ".:/plugin:ro"
+  shellcheck:
+    image: koalaman/shellcheck
+    command: ['/plugin/hooks/command']
+    volumes:
+      - ".:/plugin:ro"

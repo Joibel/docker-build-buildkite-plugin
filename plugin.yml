@@ -1,0 +1,26 @@
+name: Docker build
+description: Build and push a docker image
+author: https://github.com/Joibel
+requirements: []
+configuration:
+  properties:
+    key:
+      type: string
+    label:
+      type: string
+    arn_role:
+      type: string
+    ecr_url:
+      type: string
+    repository:
+      type: string
+    tag:
+      type: string
+    path:
+      type: string
+    docker_extra_args:
+      type: string
+    depends_on:
+      type: array
+  additionalProperties: false
+GG

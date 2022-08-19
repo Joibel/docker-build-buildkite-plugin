@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -xeuo pipefail
+set
+buildkite-agent pipeline upload < "$(dirname "${BASH_SOURCE}")/../docker-build"

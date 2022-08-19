@@ -1,0 +1,14 @@
+  - key: ${BUILDKITE_PLUGIN_DOCKER_BUILD_KEY:-build}
+    label: 🏷️ ${BUILDKITE_PLUGIN_DOCKER_BUILD_LABEL:-Build}
+    plugins:
+      - Joibel/loomly-tag#a788b36
+      - ecr#v2.5.0:
+          login: true
+          account-ids: "436442699215"
+          region: "us-east-1"
+          assume_role:
+            role_arn: "${BUILDKITE_PLUGIN_DOCKER_BUILD_ARN_ROLE}"
+    command:
+      - export IMAGE=${BUILDKITE_PLUGIN_DOCKER_BUILD_ECR_URL}/${BUILDKITE_PLUGIN_DOCKER_BUILD_REPOSITORY}:${BUILDKITE_PLUGIN_DOCKER_BUILD_TAG}
+      - docker build ${BUILDKITE_PLUGIN_DOCKER_BUILD_PATH:-.} ${BUILDKITE_PLUGIN_DOCKER_DOCKER_EXTRA_ARGS} ${IMAGE}
+      - docker push ${IMAGE}
